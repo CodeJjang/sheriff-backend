@@ -54,12 +54,8 @@ namespace SherrifBackend.Models
 
         }
 
-        public static void InsertVehicleLocation(Vehicle vehicle, double xCoordinate, double yCoordinate)
+        public static void InsertVehicleLocation(Vehicle vehicle, Location location)
         {
-            Location location = new Location();
-            location.Time = DateTime.Now;
-            location.VehicleObject = vehicle;
-            location.Point = new GeoJson2DCoordinates(xCoordinate, yCoordinate);
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Location> locations = mongoDB.GetCollection<Location>(LOCATION_COLLECTION);
             locations.InsertOne(location);

@@ -9,16 +9,18 @@ using System.Net.Http;
 using System.Web.Http;
 using SherrifBackend.Models.Entities;
 using MongoDB.Driver.GeoJsonObjectModel;
+using SherrifBackend.Models;
 
 namespace SherrifBackend.Controllers
 {
     public class SnapshotHandlerController : ApiController
     {
-        // GET api/values/5
-        public string Get(int id)
+        [HttpPost]
+        public string Send(string base64Image, string lon, string lat)
         {
             var apiInstance = new DefaultApi();
-            var imageBytes = Convert.ToBase64String(System.IO.File.ReadAllBytes(@"D:\Downloads\Junk\carphotos\o5myytqmyt1z.jpg"));
+            //var imageBytes = Convert.ToBase64String(System.IO.File.ReadAllBytes(@"D:\Downloads\Junk\carphotos\o5myytqmyt1z.jpg"));
+            var imageBytes = base64Image;
             var secretKey = "sk_68915d22026ad9d2e1d979ae";
             var country = "eu";
             var recognizeVehicle = 1;
@@ -35,12 +37,14 @@ namespace SherrifBackend.Controllers
                         MakeModel = result.Vehicle.BodyType.First().Name,
                         LicensePlate = result.Plate
                     };
-                    Location loc = new Location()
+                    Location location = new Location()
                     {
                         VehicleLicensePlate = vehicle.LicensePlate,
-                        Point = new GeoJson2DCoordinates(0, 0),
+                        Point = new GeoJson2DCoordinates(double.Parse(lon), double.Parse(lat)),
                         Time = new DateTime()
                     };
+
+                    SheriffModel.InsertVehicleLocation(vehicle, location);
                     
                 }
 
