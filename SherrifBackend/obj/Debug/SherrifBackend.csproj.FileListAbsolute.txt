@@ -1,3 +1,4 @@
+D:\MY_DATA\מירים\Desktop\sherrif-backend\sheriff-backend\SherrifBackend\obj\Debug\SherrifBackend.csprojResolveAssemblyReference.cache
 D:\Workspace\Sheriff\SherrifBackend\bin\ApplicationInsights.config
 D:\Workspace\Sheriff\SherrifBackend\bin\roslyn\csc.exe
 D:\Workspace\Sheriff\SherrifBackend\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -24,10 +25,14 @@ D:\Workspace\Sheriff\SherrifBackend\bin\Microsoft.AI.WindowsServer.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\Microsoft.ApplicationInsights.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\Microsoft.Web.Infrastructure.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\MongoDB.Bson.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\MongoDB.Driver.Core.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\MongoDB.Driver.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\Newtonsoft.Json.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\OpenAlprApi.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\RestSharp.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\System.Net.Http.Formatting.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\System.Runtime.InteropServices.RuntimeInformation.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Helpers.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Http.dll
 D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Http.WebHost.dll
@@ -47,6 +52,9 @@ D:\Workspace\Sheriff\SherrifBackend\bin\Microsoft.CodeDom.Providers.DotNetCompil
 D:\Workspace\Sheriff\SherrifBackend\bin\Newtonsoft.Json.xml
 D:\Workspace\Sheriff\SherrifBackend\bin\OpenAlprApi.xml
 D:\Workspace\Sheriff\SherrifBackend\bin\RestSharp.xml
+D:\Workspace\Sheriff\SherrifBackend\bin\MongoDB.Bson.xml
+D:\Workspace\Sheriff\SherrifBackend\bin\MongoDB.Driver.xml
+D:\Workspace\Sheriff\SherrifBackend\bin\MongoDB.Driver.Core.xml
 D:\Workspace\Sheriff\SherrifBackend\bin\System.Net.Http.Formatting.xml
 D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Helpers.xml
 D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Http.xml
