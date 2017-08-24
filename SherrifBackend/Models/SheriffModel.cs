@@ -20,6 +20,7 @@ namespace SherrifBackend.Models
         private const string BOUNTY_COLLECTION = "BOUNTIES";
         private const string LOCATION_COLLECTION = "LOCATIONS";
         private const string VEHICLE_COLLECTION = "VEHICLES";
+        private const string TARGET_COLLECTION = "TARGETS";
         private const string STATISTIC_COLLECTION = "STATISTICS";
 
         public static void AddUser(User user)
@@ -29,11 +30,11 @@ namespace SherrifBackend.Models
             users.InsertOne(user);
         }
 
-        public static void AddStolenVehicle(Vehicle vehicle)
+        public static void AddTarget(Target target)
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
-            IMongoCollection<Vehicle> vehicles = mongoDB.GetCollection<Vehicle>(VEHICLE_COLLECTION);
-            vehicles.InsertOne(vehicle);
+            IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
+            targets.InsertOne(target);
         }
 
         public static void SetUserAsSheriff(User user, bool isSheriff)
@@ -45,21 +46,17 @@ namespace SherrifBackend.Models
             users.UpdateOne(query, update);
         }
 
-        public static List<Bounty> GetUserBounties(string userId)
+        public static List<Target> GetUserBounties(string userId)
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
-            IMongoCollection<Bounty> bounties = mongoDB.GetCollection<Bounty>(BOUNTY_COLLECTION);
-            var query = MongoDB.Driver.Builders<Bounty>.Filter.Eq("userId", userId);
-            return bounties.Find<Bounty>(query).ToList();
+            IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
+            var query = MongoDB.Driver.Builders<Target>.Filter.Eq("FoundUserId", userId);
+            return targets.Find<Target>(query).ToList();
 
         }
 
-        public static void InsertVehicleLocation(Vehicle vehicle, double xCoordinate, double yCoordinate)
+        public static void InsertVehicleLocation(Location location)
         {
-            Location location = new Location();
-            location.Time = DateTime.Now;
-            location.VehicleObject = vehicle;
-            location.Point = new GeoJson2DCoordinates(xCoordinate, yCoordinate);
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Location> locations = mongoDB.GetCollection<Location>(LOCATION_COLLECTION);
             locations.InsertOne(location);
@@ -73,12 +70,29 @@ namespace SherrifBackend.Models
             return statistics.Find<Statistic>(query).FirstOrDefault();
         }
 
-        private static List<string> GetStolenCars()
+        public static List<string> GetTargets()
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
-            IMongoCollection<Vehicle> vehicles = mongoDB.GetCollection<Vehicle>(VEHICLE_COLLECTION);
-            return vehicles.Find(_ => true).Project<string>
-                (Builders<Vehicle>.Projection.Include(f => f.LicensePlate)).ToList();
+            IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
+            return targets.Find(_ => true).Project<string>
+                (Builders<Target>.Projection.Include(f => f.VehicleLicensePlate)).ToList();
+        }
+
+        public static List<Location> FindTargets(List<string> LicensePlate, DateTime fromTime)
+        {
+            IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
+            IMongoCollection<Location> locations = mongoDB.GetCollection<Location>(LOCATION_COLLECTION);
+            var query = MongoDB.Driver.Builders<Location>.Filter.AnyIn<string>("VehicleLicensePlate", LicensePlate);
+            return locations.Find<Location>(query).ToList();
+        }
+
+        public static void UpdateFoundTargets(List<string> LicensePlates, string userId)
+        {
+            IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
+            IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
+            var query = MongoDB.Driver.Builders<Target>.Filter.AnyIn<string>("VehicleLicensePlate", LicensePlates);
+            var update = MongoDB.Driver.Builders<Target>.Update.Set("IsPaid", true).Set("FoundUserId", userId);
+            targets.UpdateMany(query, update);
         }
     }
 }
