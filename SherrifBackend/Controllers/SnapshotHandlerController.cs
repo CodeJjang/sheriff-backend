@@ -39,12 +39,12 @@ namespace SherrifBackend.Controllers
                     };
                     Location location = new Location()
                     {
-                        VehicleLicensePlate = vehicle.LicensePlate,
+                        VehicleObject = vehicle,
                         Point = new GeoJson2DCoordinates(double.Parse(lon), double.Parse(lat)),
                         Time = new DateTime()
                     };
 
-                    SheriffModel.InsertVehicleLocation(vehicle, location);
+                    SheriffModel.InsertVehicleLocation(location);
                     
                 }
 

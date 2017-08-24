@@ -220,6 +220,7 @@
     <Compile Include="Models\Entities\Vehicle.cs" />
     <Compile Include="Models\Entities\Statistic.cs" />
     <Compile Include="Models\Entities\User.cs" />
+    <Compile Include="Models\IntersectionJob.cs" />
     <Compile Include="Models\SheriffModel.cs" />
     <Compile Include="Models\Utilities\ConnectionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
