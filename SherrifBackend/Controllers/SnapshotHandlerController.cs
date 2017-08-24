@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace SherrifBackend.Controllers
 {
-    public class ValuesController : ApiController
+    public class SnapshotHandlerController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
