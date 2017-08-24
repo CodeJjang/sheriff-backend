@@ -19,7 +19,7 @@ namespace SherrifBackend.Models
 
         public static void StartFindIntersections()
         {
-            timer = new Timer(60 * 1000);
+            timer = new Timer(10 * 1000);
             timer.Elapsed += FindTargets;
             // Hook up the Elapsed event for the timer. 
             timer.AutoReset = true;

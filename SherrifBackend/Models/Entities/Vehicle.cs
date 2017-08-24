@@ -10,6 +10,7 @@ namespace SherrifBackend.Models.Entities
 {
     public class Vehicle
     {
+        public ObjectId _id { get; set; }
         public string LicensePlate { get; set; }
         public string Make { get; set; }
         public string MakeModel { get; set; }

@@ -10,23 +10,30 @@ using System.Web.Http;
 using SherrifBackend.Models.Entities;
 using MongoDB.Driver.GeoJsonObjectModel;
 using SherrifBackend.Models;
+using Newtonsoft.Json.Linq;
 
 namespace SherrifBackend.Controllers
 {
+    [RoutePrefix("api/SnapshotHandler")]
     public class SnapshotHandlerController : ApiController
     {
         [HttpPost]
-        public string Send(string base64Image, string lon, string lat)
+        [Route("receive")]
+        public string receive()
         {
+            string Content = Request.Content.ReadAsStringAsync().Result.ToString();
+            var param = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary <string,string>>(Content);
+            string lon = param["lon"];
+            string lat = param["lat"];
             var apiInstance = new DefaultApi();
+            var base64Image = param["base64Image"];
             //var imageBytes = Convert.ToBase64String(System.IO.File.ReadAllBytes(@"D:\Downloads\Junk\carphotos\o5myytqmyt1z.jpg"));
-            var imageBytes = base64Image;
             var secretKey = "sk_68915d22026ad9d2e1d979ae";
             var country = "eu";
             var recognizeVehicle = 1;
             try
             {
-                InlineResponse200 httpResult = apiInstance.RecognizeBytes(imageBytes, secretKey, country, recognizeVehicle);
+                InlineResponse200 httpResult = apiInstance.RecognizeBytes(base64Image, secretKey, country, recognizeVehicle);
                 foreach (var result in httpResult.Results)
                 {
                     Vehicle vehicle = new Vehicle()
@@ -39,6 +46,7 @@ namespace SherrifBackend.Controllers
                     };
                     Location location = new Location()
                     {
+                        LicensePlate = vehicle.LicensePlate,
                         VehicleObject = vehicle,
                         Point = new GeoJson2DCoordinates(double.Parse(lon), double.Parse(lat)),
                         Time = new DateTime()

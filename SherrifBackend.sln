@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SherrifBackend", "SherrifBackend\SherrifBackend.csproj", "{CDA03C53-0701-4DBE-BAB4-5E1AC48E3C6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{FF132DDD-26B2-44B1-9EE8-1829CB33FC16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CDA03C53-0701-4DBE-BAB4-5E1AC48E3C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDA03C53-0701-4DBE-BAB4-5E1AC48E3C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDA03C53-0701-4DBE-BAB4-5E1AC48E3C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF132DDD-26B2-44B1-9EE8-1829CB33FC16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF132DDD-26B2-44B1-9EE8-1829CB33FC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF132DDD-26B2-44B1-9EE8-1829CB33FC16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF132DDD-26B2-44B1-9EE8-1829CB33FC16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

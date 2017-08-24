@@ -11,6 +11,7 @@ using MongoDB.Driver;
 using MongoDB.Bson;
 using SherrifBackend.Models.Utilities;
 using MongoDB.Driver.GeoJsonObjectModel;
+using MongoDB.Driver.Core;
 
 namespace SherrifBackend.Models
 {
@@ -74,15 +75,23 @@ namespace SherrifBackend.Models
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
-            return targets.Find(_ => true).Project<string>
-                (Builders<Target>.Projection.Include(f => f.VehicleLicensePlate)).ToList();
+            List<string> returnValue = new List<string>();
+            targets.Find(x => x.IsPaid == false).Project<Target>
+                (Builders<Target>.Projection.Include(f => f.VehicleLicensePlate)).ToList().ForEach(x => returnValue.Add(x.VehicleLicensePlate) );
+            return returnValue;
         }
 
         public static List<Location> FindTargets(List<string> LicensePlate, DateTime fromTime)
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Location> locations = mongoDB.GetCollection<Location>(LOCATION_COLLECTION);
-            var query = MongoDB.Driver.Builders<Location>.Filter.AnyIn<string>("VehicleLicensePlate", LicensePlate);
+
+            string query = "{ LicensePlate: { $in:[";
+            foreach (var item in LicensePlate)
+            {
+                query += "'" + item + "',";
+            }
+            query = query.Substring(0, query.Length - 1) +"]}}";
             return locations.Find<Location>(query).ToList();
         }
 
@@ -90,7 +99,12 @@ namespace SherrifBackend.Models
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
-            var query = MongoDB.Driver.Builders<Target>.Filter.AnyIn<string>("VehicleLicensePlate", LicensePlates);
+            string query = "{ VehicleLicensePlate: { $in:[";
+            foreach (var item in LicensePlates)
+            {
+                query += "'" + item + "',";
+            }
+            query = query.Substring(0, query.Length - 1) + "]}}";
             var update = MongoDB.Driver.Builders<Target>.Update.Set("IsPaid", true).Set("FoundUserId", userId);
             targets.UpdateMany(query, update);
         }
