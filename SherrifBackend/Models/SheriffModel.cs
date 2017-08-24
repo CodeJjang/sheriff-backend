@@ -54,7 +54,7 @@ namespace SherrifBackend.Models
 
         }
 
-        public static void InsertVehicleLocation(Vehicle vehicle, Location location)
+        public static void InsertVehicleLocation(Location location)
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Location> locations = mongoDB.GetCollection<Location>(LOCATION_COLLECTION);
