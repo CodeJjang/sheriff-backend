@@ -49,7 +49,8 @@ namespace SherrifBackend.Controllers
                         LicensePlate = vehicle.LicensePlate,
                         VehicleObject = vehicle,
                         Point = new GeoJson2DCoordinates(double.Parse(lon), double.Parse(lat)),
-                        Time = new DateTime()
+                        Time = new DateTime(),
+                        UserId = param["userId"]
                     };
 
                     SheriffModel.InsertVehicleLocation(location);

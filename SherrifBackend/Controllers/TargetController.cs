@@ -8,7 +8,7 @@ using SherrifBackend.Models;
 
 namespace SherrifBackend.Controllers
 {
-    [RoutePrefix("api/ReciveHandler")]
+    [RoutePrefix("api/target")]
     public class TargetController : ApiController
     {
         [HttpPost]
@@ -19,7 +19,7 @@ namespace SherrifBackend.Controllers
             var param = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(Content);
             Target target = new Target()
             {
-                Amount = (int)param["amount"],
+                Amount = int.Parse(param["amount"].ToString()),
                 FoundUserId = null,
                 IsPaid = false,
                 RequestedUserId = "PoliceID-100",

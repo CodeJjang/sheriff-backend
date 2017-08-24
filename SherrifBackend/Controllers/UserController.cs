@@ -16,7 +16,7 @@ using SherrifBackend.Models;
 
 namespace SherrifBackend.Controllers
 {
-    [RoutePrefix("api/add")]
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         [HttpPost]
@@ -31,7 +31,7 @@ namespace SherrifBackend.Controllers
                 Address = param["Address"].ToString(),
                 Name = param["Name"].ToString(),
                 Fid = param["Fid"].ToString(),
-                IsSheriff = (bool)param["IsSheriff"],
+                IsSheriff = bool.Parse(param["IsSheriff"].ToString()),
                 FacebookPicUrl = param["FacebookPicUrl"].ToString()
             };
             SheriffModel.AddUser(user);

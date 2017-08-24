@@ -265,9 +265,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\sheriff.pubxml" />
+    <None Include="Properties\PublishProfiles\SherrifApi - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SherrifApi - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\y700 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\y700 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\zipublish.pubxml" />
+    <None Include="Properties\PublishProfiles\zippublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

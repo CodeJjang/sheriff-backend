@@ -81,17 +81,22 @@ namespace SherrifBackend.Models
             return returnValue;
         }
 
-        public static List<Location> FindTargets(List<string> LicensePlate, DateTime fromTime)
+        public static List<Location> FindTargets(List<string> LicensePlates, DateTime fromTime)
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Location> locations = mongoDB.GetCollection<Location>(LOCATION_COLLECTION);
 
             string query = "{ LicensePlate: { $in:[";
-            foreach (var item in LicensePlate)
+            foreach (var item in LicensePlates)
             {
                 query += "'" + item + "',";
             }
-            query = query.Substring(0, query.Length - 1) +"]}}";
+            if (LicensePlates.Count > 0)
+            {
+                query = query.Substring(0, query.Length - 1);
+            }
+
+            query += "]}}";
             return locations.Find<Location>(query).ToList();
         }
 
@@ -104,7 +109,12 @@ namespace SherrifBackend.Models
             {
                 query += "'" + item + "',";
             }
-            query = query.Substring(0, query.Length - 1) + "]}}";
+            if (LicensePlates.Count > 0)
+            {
+                query = query.Substring(0, query.Length - 1);
+            }
+
+            query += "]}}";
             var update = MongoDB.Driver.Builders<Target>.Update.Set("IsPaid", true).Set("FoundUserId", userId);
             targets.UpdateMany(query, update);
         }
