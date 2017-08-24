@@ -8,7 +8,7 @@ namespace SherrifBackend.Models.Entities
 {
     public class Location
     {
-        public string VehicleLicensePlate { get; set; }
+        public Vehicle VehicleObject { get; set; }
         public GeoJson2DCoordinates Point { get; set; }
         public DateTime Time { get; set; }
     }
