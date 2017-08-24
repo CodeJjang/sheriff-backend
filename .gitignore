@@ -1,4 +1,4 @@
-# Logs
+.suo # Logs
 logs
 *.log
 npm-debug.log*
