@@ -19,7 +19,7 @@ namespace SherrifBackend.Controllers
     {
         [HttpPost]
         [Route("receive")]
-        public string receive()
+        public void receive()
         {
             string Content = Request.Content.ReadAsStringAsync().Result.ToString();
             var param = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary <string,string>>(Content);
@@ -55,28 +55,11 @@ namespace SherrifBackend.Controllers
                     SheriffModel.InsertVehicleLocation(location);
                     
                 }
-
-                return "ok";
             }
             catch(Exception c)
             {
-                return c.ToString();
+                // TODO : well. shit happen's.
             }
-        }
-
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
         }
     }
 }

@@ -11,5 +11,7 @@ namespace SherrifBackend.Models.Entities
         public string Name { get; set; }
         public string Address { get; set; }
         public bool IsSheriff { get; set; }
+        public string Fid { get; set; }
+        public string FacebookPicUrl { get; set; }
     }
 }

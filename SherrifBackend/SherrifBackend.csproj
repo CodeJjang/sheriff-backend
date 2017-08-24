@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Target\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -209,7 +210,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TargetController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\SnapshotHandlerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -265,6 +267,7 @@
     <None Include="Properties\PublishProfiles\sheriff.pubxml" />
     <None Include="Properties\PublishProfiles\y700 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\y700 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\zipublish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
