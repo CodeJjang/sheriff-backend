@@ -46,6 +46,7 @@ namespace SherrifBackend.Models
             var update = MongoDB.Driver.Builders<User>.Update.Set("IsSheriff", isSheriff);
             users.UpdateOne(query, update);
         }
+  
 
         public static List<Target> GetUserBounties(string userId)
         {
@@ -53,7 +54,6 @@ namespace SherrifBackend.Models
             IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
             var query = MongoDB.Driver.Builders<Target>.Filter.Eq("FoundUserId", userId);
             return targets.Find<Target>(query).ToList();
-
         }
 
         public static void InsertVehicleLocation(Location location)

@@ -25,7 +25,7 @@ namespace SherrifBackend.Models
             //timer.AutoReset = true;
             //timer.Enabled = true;
         }
-
+        /*
         private static void FindTargets(Object source, ElapsedEventArgs e)
         {
             List<string> licensePlates = SheriffModel.GetTargets();
@@ -43,6 +43,6 @@ namespace SherrifBackend.Models
                     SheriffModel.UpdateFoundTargets(item.LicensePlates, item.UserId,null);
                 }
             }
-        }
+        }*/
     }
 }

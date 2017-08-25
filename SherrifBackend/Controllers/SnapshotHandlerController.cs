@@ -30,7 +30,7 @@ namespace SherrifBackend.Controllers
             var apiInstance = new DefaultApi();
             var base64Image = param["base64Image"];
             //var imageBytes = Convert.ToBase64String(System.IO.File.ReadAllBytes(@"D:\Downloads\Junk\carphotos\o5myytqmyt1z.jpg"));
-            var secretKey = "sk_68915d22026ad9d2e1d979ae";
+            var secretKey = "sk_f162e8d21af8177056a8ab50";
             var country = "eu";
             var recognizeVehicle = 1;
             try
