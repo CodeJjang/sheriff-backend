@@ -77,8 +77,26 @@ namespace SherrifBackend.Models
             IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
             List<string> returnValue = new List<string>();
             targets.Find(x => x.IsPaid == false).Project<Target>
-                (Builders<Target>.Projection.Include(f => f.VehicleLicensePlate)).ToList().ForEach(x => returnValue.Add(x.VehicleLicensePlate) );
+                (Builders<Target>.Projection.Include(f => f.VehicleLicensePlate)).ToList().ForEach(x => returnValue.Add(x.VehicleLicensePlate));
             return returnValue;
+        }
+
+        public static List<Target> FindTargetByLicensePlate(List<string> LicensePlates)
+        {
+            IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
+            IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
+            string query = "{$and:[{IsPaid:false},{ VehicleLicensePlate: { $in:[";
+            foreach (var item in LicensePlates)
+            {
+                query += "'" + item + "',";
+            }
+            if (LicensePlates.Count > 0)
+            {
+                query = query.Substring(0, query.Length - 1);
+            }
+
+            query += "]}}]}";
+            return targets.Find<Target>(query).ToList();
         }
 
         public static List<Location> FindTargets(List<string> LicensePlates, DateTime fromTime)
@@ -100,7 +118,7 @@ namespace SherrifBackend.Models
             return locations.Find<Location>(query).ToList();
         }
 
-        public static void UpdateFoundTargets(List<string> LicensePlates, string userId)
+        public static void UpdateFoundTargets(List<string> LicensePlates, string userId, GeoJson2DCoordinates location)
         {
             IMongoDatabase mongoDB = ConnectionManager.GetMongoDatabase();
             IMongoCollection<Target> targets = mongoDB.GetCollection<Target>(TARGET_COLLECTION);
@@ -115,7 +133,7 @@ namespace SherrifBackend.Models
             }
 
             query += "]}}";
-            var update = MongoDB.Driver.Builders<Target>.Update.Set("IsPaid", true).Set("FoundUserId", userId);
+            var update = MongoDB.Driver.Builders<Target>.Update.Set("IsPaid", true).Set("FoundUserId", userId).Set("Location",location);
             targets.UpdateMany(query, update);
         }
     }

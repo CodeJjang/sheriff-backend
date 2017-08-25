@@ -13,9 +13,11 @@ using SherrifBackend.Models;
 using Newtonsoft.Json.Linq;
 using SherrifBackend.Models.Entities;
 using SherrifBackend.Models;
+using System.Web.Http.Cors;
 
 namespace SherrifBackend.Controllers
 {
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/user")]
     public class UserController : ApiController
     {

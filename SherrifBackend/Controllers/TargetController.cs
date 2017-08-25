@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Http;
 using SherrifBackend.Models.Entities;
 using SherrifBackend.Models;
+using System.Web.Http.Cors;
 
 namespace SherrifBackend.Controllers
 {
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/target")]
     public class TargetController : ApiController
     {

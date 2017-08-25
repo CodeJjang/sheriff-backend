@@ -11,15 +11,17 @@ using SherrifBackend.Models.Entities;
 using MongoDB.Driver.GeoJsonObjectModel;
 using SherrifBackend.Models;
 using Newtonsoft.Json.Linq;
+using System.Web.Http.Cors;
 
 namespace SherrifBackend.Controllers
 {
+    [EnableCors("*", "*", "*")]
     [RoutePrefix("api/SnapshotHandler")]
     public class SnapshotHandlerController : ApiController
     {
         [HttpPost]
         [Route("receive")]
-        public void receive()
+        public string receive()
         {
             string Content = Request.Content.ReadAsStringAsync().Result.ToString();
             var param = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary <string,string>>(Content);
@@ -34,6 +36,7 @@ namespace SherrifBackend.Controllers
             try
             {
                 InlineResponse200 httpResult = apiInstance.RecognizeBytes(base64Image, secretKey, country, recognizeVehicle);
+                List<string> licenses = new List<string>();
                 foreach (var result in httpResult.Results)
                 {
                     Vehicle vehicle = new Vehicle()
@@ -52,13 +55,28 @@ namespace SherrifBackend.Controllers
                         Time = new DateTime(),
                         UserId = param["userId"]
                     };
-
+                    licenses.Add(vehicle.LicensePlate);
                     SheriffModel.InsertVehicleLocation(location);
                     
                 }
+
+                if(licenses.Count > 0)
+                {
+                    List<Target> targets = SheriffModel.FindTargetByLicensePlate(licenses);
+                    if(targets.Count > 0)
+                    {
+                        List<string> catched = new List<string>();
+                        targets.ForEach(x => catched.Add(x.VehicleLicensePlate));
+                        SheriffModel.UpdateFoundTargets(catched, param["userId"], new GeoJson2DCoordinates(double.Parse(lon), double.Parse(lat)));
+                        return Newtonsoft.Json.JsonConvert.SerializeObject(targets);
+                    }
+                }
+
+                return "";
             }
             catch(Exception c)
             {
+                return "err";
                 // TODO : well. shit happen's.
             }
         }

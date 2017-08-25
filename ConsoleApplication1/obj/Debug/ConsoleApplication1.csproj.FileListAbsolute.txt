@@ -47,6 +47,11 @@ D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\System.Web.WebPages.Razor.xml
 D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\System.Web.WebPages.xml
 D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\Workspace\Sheriff\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
-D:\Workspace\Sheriff\ConsoleApplication1\obj\Debug\ConsoleApplication1.csproj.ConsoleApplication1.exe.config
 D:\Workspace\Sheriff\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 D:\Workspace\Sheriff\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\System.Web.Http.Cors.dll
+D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\WebGrease.dll
+D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\System.Web.Cors.dll
+D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\Antlr3.Runtime.dll
+D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\System.Web.Http.Cors.xml
+D:\Workspace\Sheriff\ConsoleApplication1\bin\Debug\Antlr3.Runtime.pdb

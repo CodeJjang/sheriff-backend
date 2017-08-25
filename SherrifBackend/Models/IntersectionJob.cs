@@ -19,11 +19,11 @@ namespace SherrifBackend.Models
 
         public static void StartFindIntersections()
         {
-            timer = new Timer(10 * 1000);
-            timer.Elapsed += FindTargets;
+            //timer = new Timer(10 * 1000);
+            //timer.Elapsed += FindTargets;
             // Hook up the Elapsed event for the timer. 
-            timer.AutoReset = true;
-            timer.Enabled = true;
+            //timer.AutoReset = true;
+            //timer.Enabled = true;
         }
 
         private static void FindTargets(Object source, ElapsedEventArgs e)
@@ -40,7 +40,7 @@ namespace SherrifBackend.Models
 
                 foreach (var item in userTargets)
                 {
-                    SheriffModel.UpdateFoundTargets(item.LicensePlates, item.UserId);
+                    SheriffModel.UpdateFoundTargets(item.LicensePlates, item.UserId,null);
                 }
             }
         }

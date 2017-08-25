@@ -139,3 +139,6 @@ D:\MY_DATA\מירים\Desktop\sherrif-backend\dolev\sheriff-backend\SherrifBacke
 D:\MY_DATA\מירים\Desktop\sherrif-backend\dolev\sheriff-backend\SherrifBackend\bin\System.Web.WebPages.Deployment.xml
 D:\MY_DATA\מירים\Desktop\sherrif-backend\dolev\sheriff-backend\SherrifBackend\bin\System.Web.WebPages.Razor.xml
 D:\MY_DATA\מירים\Desktop\sherrif-backend\dolev\sheriff-backend\SherrifBackend\bin\Antlr3.Runtime.pdb
+D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Cors.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Http.Cors.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Http.Cors.xml

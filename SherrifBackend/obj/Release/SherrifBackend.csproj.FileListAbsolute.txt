@@ -68,3 +68,6 @@ D:\Workspace\Sheriff\SherrifBackend\bin\Antlr3.Runtime.pdb
 D:\Workspace\Sheriff\SherrifBackend\obj\Release\SherrifBackend.csprojResolveAssemblyReference.cache
 D:\Workspace\Sheriff\SherrifBackend\obj\Release\SherrifBackend.dll
 D:\Workspace\Sheriff\SherrifBackend\obj\Release\SherrifBackend.pdb
+D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Cors.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Http.Cors.dll
+D:\Workspace\Sheriff\SherrifBackend\bin\System.Web.Http.Cors.xml
